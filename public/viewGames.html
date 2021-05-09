@@ -1,0 +1,493 @@
+<!-- 
+    Class: DIT/1B/03
+    Admission Number: P2026453
+    Name: Phan Kiah Fong Nicholas
+ -->
+
+<!DOCTYPE html>
+<!-- saved from url=(0099)https://esp.sp.edu.sg/bbcswebdav/pid-1799723-dt-content-rid-8546103_2/courses/ST0503/viewGames.html -->
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SP Games</title>
+    <link href="css/viewGames.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./viewUsers_files/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="./viewUsers_files/jquery-3.3.1.min.js.download"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="./viewUsers_files/popper.min.js.download"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="./viewUsers_files/bootstrap.min.js.download"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+    <script>
+
+
+        function createCard(cardInfo) {
+            var card = `
+            <div class="card" style="margin-top: 2rem;">
+                <div class="card-body">
+                    <p class="card-text">${cardInfo.title}</p> 
+                </div>
+                <div class="card-footer text-muted">
+                    ${cardInfo.description} 
+                    </div>
+                <div class="card-footer text-muted">
+                    <a href="http://localhost:3001/viewGame.html?gameid=${cardInfo.gameid}"
+                        class="btn btn-primary">View</a>
+
+                </div>
+            </div>
+            `;
+            /*
+                href = "viewUsers.html"
+                href = "/viewUsers.html"
+
+                href      |      Current location       |   Target Location
+                -------------------------------------------------
+                a.html    |http://abc.com/page1.html    |http://abc.com/a.html
+                /a.html   |http://abc.com.page1.html    |http://abc.com/a.html
+                a.html    |http://abc.com/sub/page1.html|http://abc.com/sub/a.html
+                /a.html   |http://abc.com/sub/page1.html|http://abc.com/a.html
+
+                login.html    http://abc.com/catalog/products.html   http://abc.com/catalog/login.html
+                /login.html   http://abc.com/catalog/products.html   http://abc.com/login.html
+                
+                We use a / infront because it directs us to the root folder when we change pages
+
+                http://abc.com/games.html?id=132
+                http://abc.com/game?id=132
+                anything that goes behind the question mark extracts the value and use it for other pages (Query Parameters)
+            */
+
+            return card
+        }
+
+        function loadAllGames() {
+            // call the web service endpoint
+            $.ajax({
+                // headers: { 'authorization': 'Bearer ' + tmpToken },
+                url: 'http://localhost:3000/games',
+                type: 'GET',
+                // data: JSON.stringify(data2),
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                success: function (data, textStatus, xhr) { // data would store the responses when user succeeds in updating a user 
+                    // to use data, use data.fieldCount, data.affectedRows etc...
+                    console.log("---------response data-----------");
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        var games = data[i];
+                        // console.log("userid: "+user.userid);
+                        // console.log("username: "+user.username);
+                        // console.log("email: "+user.email);
+
+                        // compile the data that the card needs for its creation
+                        var cardInfo = {
+                            "gameid": games.gameid,
+                            "title": games.title,
+                            "description": games.description,
+                            "platform": games.platform,
+                            "price": games.price
+                        };
+                        console.log("-------------Card Info data pack---------------");
+                        console.log(cardInfo);
+
+                        var newCard = createCard(cardInfo);
+                        $('#games').append(newCard);
+                    }
+                    // if (data != null && data.success) {
+
+                    //     $('#msg').html('Record updated successfully!');
+                    //     console.log(xhr.responseText)
+
+                    // } else {
+                    //     console.log("Error");
+                    // }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                    console.log(xhr);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+
+                    console.log(xhr.responseText);
+                    console.log(xhr.status);
+                    // if (xhr.status == 401) {
+                    //     $('#msg').html('Yo! Unauthorised Lah!!'); // Message shown in the front end
+                    // }
+                }
+            });
+        }
+
+        function searchGame(title, platform, price) {
+            // call the web service endpoint
+            $.ajax({
+                // headers: { 'authorization': 'Bearer ' + tmpToken },
+
+                url: 'http://localhost:3000/game/' + title + '/' + platform + '/' + price, // to get value of gameid, 
+
+                type: 'GET',
+                // data: JSON.stringify(data2),
+                // contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                success: function (data, textStatus, xhr) { // data would store the responses when user succeeds in updating a user 
+                    // to use data, use data.fieldCount, data.affectedRows etc...
+                    // console.log("---------response data-----------");
+
+                    // console.log("TESTTESTEST")
+                    console.log(data);
+
+                    if (data.length == 0) {
+                        console.log("No game found in Search");
+                        $('#messages').html("No results. Cannot find game."); // Writes to html that no game is found
+                        loadAllGames();
+                        return;
+                    }
+
+                    for (var i = 0; i < data.length; i++) {
+                        var cardInfo = {
+                            "gameid": data[i].gameid,
+                            "title": data[i].title,
+                            "description": data[i].description,
+                            "platform": data[i].platform,
+                            "price": data[i].price
+                        }
+
+                        var cardHtml = createCard(cardInfo);
+                        $('#games').append(cardHtml);
+                    }
+
+
+                    // //| 
+                    // $('#title').html(data[0].title);     //|----- gets the user's data
+                    // $('#platform').html(data[0].platform);
+                    // $('#price').html(data[0].price);
+                    // //|
+
+
+
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                    console.log(xhr);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+
+                    console.log(xhr.responseText);
+                    console.log(xhr.status);
+                    // if (xhr.status == 401) {
+                    //     $('#msg').html('Yo! Unauthorised Lah!!'); // Message shown in the front end
+                    // }
+                }
+            });
+
+        }
+
+        function loadGame() {
+            // data extraction
+            var queryParams = new URLSearchParams(window.location.search); // searches the url
+            console.log("--------Query Parameters--------");
+            console.log("Query Params (source): " + window.location.search);
+            console.log("Query Params (extracted): " + queryParams);
+
+            if (!queryParams.has("gameid")) { // if queryParams dont have userid
+                console.log("Query parameter (gameid) is missing.")
+                $('#messages').html("Invalid Query Params. Page unable to load.");//Prints error message in page(frontend)
+            }
+            else { // if queryParams have gameid
+                var gameid = queryParams.get("gameid");
+                console.log("Query Param (gameid): " + queryParams.get("gameid")); // displays gameid in console
+                // data compilation
+                // Do i need data compilation? If nothing in postman body, dont need to compile, not necessary
+                // call the web service endpoint
+                $.ajax({
+                    // headers: { 'authorization': 'Bearer ' + tmpToken },
+
+                    url: 'http://localhost:3000/game/' + gameid, // to get value of gameid, 
+
+                    type: 'GET',
+                    // data: JSON.stringify(data2),
+                    // contentType: "application/json; charset=utf-8",
+                    dataType: 'json',
+                    success: function (data, textStatus, xhr) { // data would store the responses when user succeeds in updating a user 
+                        // to use data, use data.fieldCount, data.affectedRows etc...
+                        console.log("---------response data-----------");
+                        console.log(data);
+
+                        $('#title').html(data[0].title);      //| 
+                        $('#platform').html(data[0].platform);     //|----- gets the user's data
+                        $('#category').html(data[0].catname);             //|
+                        $('#year').html(data[0].year);           //|
+                        $('#description').html(data[0].description);           //|
+
+
+
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.log('Error in Operation');
+                        console.log(xhr);
+                        console.log(textStatus);
+                        console.log(errorThrown);
+
+                        console.log(xhr.responseText);
+                        console.log(xhr.status);
+                        // if (xhr.status == 401) {
+                        //     $('#msg').html('Yo! Unauthorised Lah!!'); // Message shown in the front end
+                        // }
+                    }
+                });
+
+            }
+        }
+
+
+        // function loadGame(gameid) {
+        //     // call the web service endpoint
+        //     $.ajax({
+        //         // headers: { 'authorization': 'Bearer ' + tmpToken },
+
+        //         url: 'http://localhost:3000/game/' + gameid,// to get value of userid, 
+
+        //         type: 'GET',
+        //         // data: JSON.stringify(data2),
+        //         // contentType: "application/json; charset=utf-8",
+        //         dataType: 'json',
+        //         success: function (data, textStatus, xhr) { // data would store the responses when user succeeds in updating a user 
+        //             // to use data, use data.fieldCount, data.affectedRows etc...
+        //             console.log("---------response data-----------");
+        //             console.log(data);
+
+        //             if (data.length == 0) {
+        //                 console.log("No game found in Search");
+        //                 $('#messages').html("No results. Cannot find game."); // Writes to html that no user is found
+        //                 loadAllGames();
+        //                 return;
+        //             }
+
+
+        //             var cardInfo = {
+        //                 "gameid": data[0].gameid,
+        //                 "title": data[0].title,
+        //                 "description": data[0].description
+        //             }
+        //             var cardHtml = createCard(cardInfo);
+
+        //             $('#games').append(cardHtml);
+
+        //             $('#gameid').html(data[0].gameid);         //| 
+        //             $('#title').html(data[0].title);     //|----- gets the user's data
+        //             $('#description').html(data[0].description);             //|
+        //             //|
+
+
+        //         },
+        //         error: function (xhr, textStatus, errorThrown) {
+        //             console.log('Error in Operation');
+        //             console.log(xhr);
+        //             console.log(textStatus);
+        //             console.log(errorThrown);
+
+        //             console.log(xhr.responseText);
+        //             console.log(xhr.status);
+        //             // if (xhr.status == 401) {
+        //             //     $('#msg').html('Yo! Unauthorised Lah!!'); // Message shown in the front end
+        //             // }
+        //         }
+        //     });
+
+        // }
+
+        $(document).ready(function () {
+            // check if we have a valid search query param
+            var queryParams = new URLSearchParams(window.location.search); // searches the url
+            console.log("--------Query Parameters--------");
+            console.log("Query Params (source): " + window.location.search);
+            console.log("Query Params (extracted): " + queryParams);
+            // var title = queryParams.get("search_title");
+            // console.log(title)
+            // if (queryParams.has("search_title")) { // if queryParams dont have userid
+            //     // If yes, load just that user
+            //     if (title == "") { // if title is empty
+            //         console.log("nsiofnofwcwbciuwbv");
+            //         var title = "";
+            //     }
+            //     else {
+            //         console.log("aaaaa");
+            //         var title = queryParams.get("search_title");
+            //         console.log(title);
+            //     }
+            //     if (platform == "") {
+            //         var platform = "";
+            //     }
+            //     else {
+            //         console.log("vbbbbb");
+            //         var platform = queryParams.get("search_platform");
+            //     }
+            //     if (isNaN(price)) {
+            //         console.log("sdafafa");
+            //         var price = 1000;
+            //     }
+            //     else {
+            //         console.log("cccccccc");
+            //         var price = queryParams.get("search_price");
+            //     }
+            //     console.log(title)
+            //     console.log(platform)
+            //     console.log(price)
+            //     // console.log("Search UserID: " + userid);
+            //     // console.log("AM I HERE?");
+            //     searchGame(title, platform, price);
+            // } else {
+            //     loadAllGames();
+            // }
+            if (queryParams.has("search_title")) { // if queryParams dont have userid
+                // If yes, load just that user
+
+                var title = queryParams.get("search_title");
+                console.log(title);
+
+                var platform = queryParams.get("search_platform");
+
+                var price = 1000;
+                if (queryParams.get("search_price") != "") {
+                    var price = queryParams.get("search_price")
+                }
+
+
+
+                console.log(title)
+                console.log(platform)
+                console.log(price)
+                // console.log("Search UserID: " + userid);
+                // console.log("AM I HERE?");
+                searchGame(title, platform, price);
+            } else {
+                loadAllGames();
+                
+            }
+
+
+
+
+
+
+            // register the search button click
+            $('#Search').click(function () {
+                console.log("Search button is clicked");
+
+                // data extraction
+                var searchGameTitle = $('#title').val(); // extracts value from title
+                var searchGamePlatform = $('#platform').val();
+                var searchGamePrice = $('#price').val();
+
+                console.log("Search GameTitle: " + searchGameTitle);
+                console.log("Search GamePlatform: " + searchGamePlatform);
+                console.log("Search GamePrice: " + searchGamePrice);
+                // data compilation
+                var redirectURL = "http://localhost:3001/viewGames.html?search_title=" + searchGameTitle + '&search_platform=' + searchGamePlatform + '&search_price=' + searchGamePrice;
+                console.log("Redirect URL: " + redirectURL);
+
+                // redirect to url with query parameters
+                window.location.assign(redirectURL);
+
+                // disable the normal behaviour of a form submission
+                return false;
+            })
+
+
+
+        });  
+    </script>
+</head>
+
+<body style="background-color: black;">
+
+    <section id="headBackground" class="">
+        <p class="h1 text-center" id="sp"><b>Singapore Polytechnic</b></p>
+    </section>
+
+    <div class="navbar">
+        <a href="home.html" class="table-bordered"><b>Home</b></a>
+        <a href="viewGames.html" class="table-bordered"><b>Games</b></a>
+        <a href="about.html" class="table-bordered"><b>About</b></a>
+        <a href="profile.html" class="table-bordered"><b>Profile</b></a>
+        <a href="login.html" class="table-bordered"><b>Log In</b></a>
+
+    </div>
+
+    <div>
+        <a href="addGame.html" id="addGameLink">Add Game (Admin Only)</a>
+        <a href="addCategory.html" id="addCategoryLink">Add Category (Admin Only)</a>
+    </div>
+
+    <div class="container">
+    </div>
+
+    <div class="container">
+        <nav class="nav">
+            <a class="nav-link" href="/profile.html">Profile</a>
+            <a class="nav-link" href="/viewGames.html">All Games</a>
+        </nav>
+
+        <div style="margin-top: 2rem;">
+            <div id="messages" class="text-primary font-weight-bold">
+                <!-- Creates a message in the page -->
+            </div>
+            <h1 id="home">Home</h1>
+
+            <form id="search-game-form" style="margin-top: 2rem;">
+                <div class="form-group">
+                    <textarea class="form-control" id="title" rows="3" placeholder="Search what title?"></textarea>
+                    <textarea class="form-control" id="platform" rows="3"
+                        placeholder="Search what platform?"></textarea>
+                    <textarea class="form-control" id="price" rows="3" placeholder="Search what price?"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" id="Search">Search Game</button>
+            </form>
+
+            <div id="games">
+
+            </div>
+
+            <div id="demo">
+            </div>
+
+            <!-- <div class="card" style="margin-top: 2rem;">
+                <div class="card-body">
+                    <p class="card-text">Name</p>
+                </div>
+                <div class="card-footer text-muted">
+                    Email
+                </div>
+                <div class="card-footer text-muted">
+                    <a href="https://esp.sp.edu.sg/bbcswebdav/pid-1799723-dt-content-rid-8546103_2/courses/ST0503/viewGames.html?userid=1"
+                        class="btn btn-primary">View</a>
+
+                </div>
+            </div> -->
+
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+</body>
+
+<footer>
+
+    Copyright &#9400; 2020, All rights reserved.
+    SP_Games
+</footer>
+
+</html>

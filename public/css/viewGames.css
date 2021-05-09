@@ -1,0 +1,81 @@
+/* 
+    Class: DIT/1B/03
+    Admission Number: P2026453
+    Name: Phan Kiah Fong Nicholas
+*/
+
+@charset "utf-8";
+
+body {
+    background-color: white;
+}
+
+#headBackground {
+    background-image: url("./coolBackgroundImage.jpg");
+    padding: 20px
+}
+
+#addGameLink{
+    color: white;
+    margin-left: 20px;
+}
+
+#addCategoryLink{
+    color: white;
+    margin-left: 20px;
+}
+
+div.navbar{
+    padding: 0;
+}
+
+#sp{
+    color: white;
+}
+
+#home{
+    color: blue;
+}
+
+
+
+.table-bordered {
+    border: solid;
+    border-width: 1px;
+    border-color: #ddd;
+}
+
+.navbar a {
+    float: left;
+    /* padding: 12px; */
+    color: rgb(78, 78, 78);
+    background-color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 17px;
+    width: 20%;
+    padding: 12px;
+    /* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
+    text-align: center;
+    /* If you want the text to be centered */
+}
+
+/* Add a background color on mouse-over */
+
+.navbar a:hover {
+    background-color: #000;
+    color: white
+}
+
+/* Style the current/active link */
+
+.navbar a.active {
+    background-color: #4CAF50;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    color: white;
+    background-color: black;
+    font-weight: bold;
+}

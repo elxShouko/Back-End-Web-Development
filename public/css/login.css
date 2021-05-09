@@ -1,0 +1,125 @@
+/* 
+    Class: DIT/1B/03
+    Admission Number: P2026453
+    Name: Phan Kiah Fong Nicholas
+*/
+
+@charset "utf-8";
+body {
+    background-image: url("./coolBackgroundImage.jpg");
+}
+
+#titlenav {
+    background-color: #395697;
+    color: white;
+}
+
+#navbar {
+    color: white;
+}
+
+#addGameLink{
+    color: white;
+    margin-left: 20px;
+}
+
+#addCategoryLink{
+    color: white;
+    margin-left: 20px;
+}
+
+#sp{
+    color: white;
+    margin: 20px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+
+li {
+    list-style-type: none;
+}
+
+/* .navbar {
+    width: 100%;
+    background-color: #555;
+    overflow: auto;
+} */
+
+#headBackground{
+    background-image: url("./coolBackgroundImage.jpg");
+    
+}
+
+
+
+.navbar a {
+    float: left;
+    padding: 12px;
+    color: rgb(78, 78, 78);
+    background-color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 17px;
+    width: 33.33%;
+    /* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
+    text-align: center;
+    /* If you want the text to be centered */
+}
+
+
+
+/* Add a background color on mouse-over */
+
+.navbar a:hover {
+    background-color: #000;
+    color:white
+}
+
+/* Style the current/active link */
+
+.navbar a.active {
+    background-color: #4CAF50;
+}
+
+.login-form {
+    width: 340px;
+    margin-left: 230px;
+}
+
+.login-form form {
+    margin-top: 120px;
+    margin-bottom: 100px;
+    background: #f7f7f7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    border: solid;
+}
+
+.login-form h2 {
+    margin: 0 0 15px;
+}
+
+.form-control, .btn {
+    min-height: 38px;
+    border-radius: 2px;
+}
+
+.btn {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#rightCol{
+    float: right;
+    color: white;
+    margin-right: 200px;
+    margin-top: 90px;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    color: white;
+    background-color: black;
+    font-weight: bold;
+}

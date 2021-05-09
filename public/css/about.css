@@ -1,0 +1,117 @@
+/* 
+    Class: DIT/1B/03
+    Admission Number: P2026453
+    Name: Phan Kiah Fong Nicholas
+*/
+
+@charset "utf-8";
+#headBackground {
+    background-image: url("./coolBackgroundImage.jpg");
+    padding: 20px
+}
+
+body{
+    background-color: black;
+}
+
+h1{
+    color:white;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#addGameLink{
+    color: white;
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+#addCategoryLink{
+    color: white;
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+h3{
+    color: blue;
+}
+
+li{
+    color: white;
+}
+
+
+.navbar a {
+    float: left;
+    /* padding: 12px; */
+    color: rgb(78, 78, 78);
+    background-color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 17px;
+    width: 20%;
+    /* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
+    text-align: center;
+    /* If you want the text to be centered */
+}
+
+/* Add a background color on mouse-over */
+
+.navbar a:hover {
+    background-color: #000;
+    color: white
+}
+
+/* Style the current/active link */
+
+.navbar a.active {
+    background-color: #4CAF50;
+}
+
+
+.table-bordered {
+    border: solid;
+    border-width: 1px;
+    border-color: #ddd;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+#sp{
+    color: white;
+}
+
+#list{
+    font-size: 20px;
+    text-align: center;
+    list-style-type: square;
+}
+
+.container{
+    margin-top: 50px;
+}
+
+#GTA{
+    border-radius: 10px;
+    margin-left: 25px;
+}
+
+#RedDead{
+    margin-left: 100px;
+    border-radius: 10px;
+}
+
+#Assassin{
+    margin-top: 50px;
+    margin-left: 420px;
+    margin-bottom: 100px;
+    border-radius: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    color: white;
+    background-color: black;
+    font-weight: bold;
+    border-top: solid 1px white;
+}

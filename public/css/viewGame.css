@@ -1,0 +1,126 @@
+/* 
+    Class: DIT/1B/03
+    Admission Number: P2026453
+    Name: Phan Kiah Fong Nicholas
+*/
+
+@charset "utf-8";
+#body {
+    background-color: black;
+}
+
+h1 {
+    color: white;
+}
+
+div.navbar{
+    padding: 0px;
+}
+
+#headBackground {
+    background-image: url("./coolBackgroundImage.jpg");
+    padding: 20px;
+}
+
+.navigator {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.table-bordered {
+    border: solid;
+    border-width: 1px;
+    border-color: #ddd;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#addGameLink{
+    color: white;
+    margin-left: 20px;
+}
+
+#addCategoryLink{
+    color: white;
+    margin-left: 20px;
+}
+
+.navbar a {
+    float: left;
+    /* padding: 12px; */
+    color: rgb(78, 78, 78);
+    background-color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 17px;
+    width: 19.85%;
+    /* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
+    text-align: center;
+    /* If you want the text to be centered */
+}
+
+/* Add a background color on mouse-over */
+
+.navbar a:hover {
+    background-color: #000;
+    color: white;
+    text-decoration: none;
+}
+
+/* Style the current/active link */
+
+.navbar a.active {
+    background-color: #4CAF50;
+}
+
+#title {
+    font-size: 30px;
+    color: blue;
+    margin-bottom: 10px;
+    /* margin-left: 430px; */
+}
+
+p {
+    color: white;
+}
+
+#platform {
+    font-size: 30px;
+    color: blue;
+    margin-bottom: 10px;
+}
+
+#category {
+    font-size: 30px;
+    color: blue;
+    margin-bottom: 10px;
+}
+
+#year {
+    font-size: 30px;
+    color: blue;
+    margin-bottom: 10px;
+}
+
+#description {
+    font-size: 30px;
+    color: blue;
+    margin-bottom: 10px;
+}
+
+#reviews {
+    font-size: 30px;
+    color: blue;
+    margin-bottom: 10px;
+}
+
+#rating{
+    color: white;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    color: white;
+    background-color: black;
+    font-weight: bold;
+}

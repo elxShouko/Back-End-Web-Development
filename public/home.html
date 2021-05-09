@@ -1,0 +1,140 @@
+<!-- 
+    Class: DIT/1B/03
+    Admission Number: P2026453
+    Name: Phan Kiah Fong Nicholas
+ -->
+
+<!DOCTYPE html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SP Games</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="css/home.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#Login").click(function () {
+
+                // data extraction
+                var id = $('#email').val();
+                var pwd = $('#pwd').val();
+
+                // data compilation
+                var data = "{\"email\":\"" + id + "\", \"password\":\"" + pwd + "\"}";
+                console.log(data);
+
+                // call web service endpoint
+                $.ajax({
+                    url: 'http://localhost:3000/api/login',
+                    type: 'POST',
+                    data: data,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data, textStatus, xhr) {
+                        // --------------|
+                        // |
+                        // |-- contains the entire response as seen in Postman
+
+                        if (data != null) {
+                            localStorage.setItem('token', data.token);
+                            localStorage.setItem('userInfo', data.UserData);
+                            window.location.assign("http://localhost:3001/profile.html");
+                        } else {
+                            console.log("Error");
+                        }
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.log('Error in Operation');
+                    }
+                });
+                return false;
+            });
+        });  
+    </script>
+</head>
+
+<body>
+    <section id="headBackground" class="">
+        <p class="h1 text-center" id="sp"><b>Singapore Polytechnic</b></p>
+    </section>
+
+    <div class="navbar">
+        <a href="home.html" class="table-bordered"><b>Home</b></a>
+        <a href="viewGames.html" class="table-bordered"><b>Games</b></a>
+        <a href="about.html" class="table-bordered"><b>About</b></a>
+        <a href="profile.html" class="table-bordered"><b>Profile</b></a>
+        <a href="login.html" class="table-bordered"><b>Log In</b></a>
+
+    </div>
+
+    <div>
+        <a href="addGame.html" id="addGameLink">Add Game (Admin Only)</a>
+        <a href="addCategory.html" id="addCategoryLink">Add Category (Admin Only)</a>
+    </div>
+
+    <div>
+        <h1 id="welcome">Hello! Welcome to SP Games!</h1>
+        <p id="listTitle">The following are some of the categories that we provide:</p>
+        <ul id="list">
+            <li>Action</li>
+            <li>Romance</li>
+            <li>Simulation</li>
+            <li>First Person Shooter</li>
+            <li>Third Person Shooter</li>
+            <li>Open-World</li>
+        </ul>
+    </div>
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="./Images/callofduty.jpg" alt="Call Of Duty" id="img1">
+            </div>
+
+            <div class="item" id="img2">
+                <img src="./Images/Disorder_Netease.jpg" alt="Disorder Netease">
+            </div>
+
+            <div class="item" id="img3">
+                <img src="./Images/call-of-duty-black-ops-iiii.jpg" alt="Call of Duty Black Ops III">
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+
+
+
+
+
+
+</body>
+<footer>
+
+    Copyright &#9400; 2020, All rights reserved.
+    SP_Games
+</footer>
+
+</html>

@@ -1,0 +1,164 @@
+/* 
+    Class: DIT/1B/03
+    Admission Number: P2026453
+    Name: Phan Kiah Fong Nicholas
+*/
+
+@charset "utf-8";
+body {
+  background-color: black;
+  margin: 0px;
+}
+
+#headBackground{
+  background-image: url("./coolBackgroundImage.jpg");
+  padding: 20px;
+  margin:0;
+}
+/* #addGameLink{
+  color: white;
+  margin-left: 20px;
+} */
+
+/* #addCategoryLink{
+  color: white;
+  margin-left: 20px;
+} */
+
+#addGameLink{
+  color: white;
+}
+#addCategoryLink{
+  color: white;
+  margin-left: 10px;
+}
+
+
+img{
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  margin-left:600px;
+}
+
+.navigator{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  
+}
+
+.table-bordered{
+  border: solid;
+  border-width: 1px;
+  border-color: #ddd;
+}
+
+
+.navbar a {
+  float: left;
+  /* padding: 12px; */
+  color: rgb(78, 78, 78);
+  background-color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-size: 17px;
+  width: 19.85%;
+  /* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
+  text-align: center;
+  /* If you want the text to be centered */
+}
+
+/* Add a background color on mouse-over */
+
+.navbar a:hover {
+  background-color: #000;
+  color: white
+}
+
+/* Style the current/active link */
+
+.navbar a.active {
+  background-color: #4CAF50;
+}
+
+#sp{
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/* 
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+} */
+
+.username{
+  color: grey;
+  font-size: 18px;
+  margin-left: 550px;
+}
+.role{
+  color: grey;
+  font-size: 18px;
+  margin-left: 565px;
+}
+.email{
+  color: grey;
+  font-size: 18px;
+  margin-left: 580px;
+}
+
+#Update{
+  margin-left: 650px;
+}
+
+#Logout{
+  margin-left: 650px;
+}
+
+/* button {
+  border: black;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000; 
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+} */
+
+#msg{
+  color: white;
+  margin-left: 600px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+
+#icons{
+  margin-left: 650px;
+}
+
+.fa{
+  color: white;
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  color: white;
+  background-color: black;
+  font-weight: bold;
+}

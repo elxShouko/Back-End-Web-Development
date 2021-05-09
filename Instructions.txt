@@ -1,0 +1,21 @@
+/* 
+    Class: DIT/1B/03
+    Admission Number: P2026453
+    Name: Phan Kiah Fong Nicholas
+*/
+
+How to setup the project
+
+1) Unzip the folder to the laptop.
+
+2) Open the main coding folder in visual studio code
+
+3) Go to the respective front and back end, starting command prompt for both front and back end
+
+4) nodemon server.js for both
+
+5) For frontend, open http://localhost:3001/login.html
+
+6) For backend, start workbench and postman
+
+7) Test all the functions and endpoints

@@ -1,0 +1,167 @@
+<!-- 
+    Class: DIT/1B/03
+    Admission Number: P2026453
+    Name: Phan Kiah Fong Nicholas
+ -->
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="css/profile.css" rel="stylesheet" />
+    <Title>User Profile</Title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            const token = localStorage.getItem("token");
+            const userInfo = localStorage.getItem("userInfo");
+
+            if (token === null || userInfo === null) {
+                console.log("Token not found / No User ID");
+                window.location.href = "/login.html";
+            }
+
+            $("#Update").click(function () {
+                // data extraction
+                var tmpUName = $('#username').val();
+                var tmpEmail = $('#email').val();
+                var tmpType = $('#type').val();
+                var tmpToken = localStorage.getItem('token');
+                // var userid = localStorage.getItem('userInfo')[0].userid
+
+                var userData = localStorage.getItem('userInfo');
+                var userJsonData = JSON.parse(userData);
+                var userid = userJsonData[0].userid;
+                var tmpPwd = userJsonData[0].password;
+                console.log("userid: " + userid);
+
+                // data compilation
+                // var data = "{\"username\":\"" + tmpUName + "\", \"email\":\"" + tmpEmail + "\", \"role\":\"" + tmpRole + "\", \"password\":\""+ tmpPwd +"\"}";
+
+
+                // console.log("Data: " + data);
+
+                // data compilation - better approach
+                var data2 = {
+                    "username": tmpUName,
+                    "email": tmpEmail,
+                    "type": tmpType,
+                    "password": tmpPwd,
+                }
+
+                console.log("Data2: " + JSON.stringify(data2));
+
+                // call the web service endpoint
+                $.ajax({
+                    headers: { 'authorization': 'Bearer ' + tmpToken },
+                    url: 'http://localhost:3000/user/' + userid,// what userid???  
+                    type: 'PUT',
+                    data: JSON.stringify(data2),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: 'json',
+                    success: function (data, textStatus, xhr) { // data would store the responses when user succeeds in updating a user 
+                        // to use data, use data.fieldCount, data.affectedRows etc...
+                        if (xhr.status == 204) {
+                            // console.log("AUHWDDILUAHWDIAWDLIHAWD")
+                            $('#msg').html('Profile updated successfully!');
+                            console.log(xhr.responseText)
+
+                        } else {
+                            console.log("Error");
+                        }
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.log('Error in Operation');
+                        console.log(xhr);
+                        console.log(textStatus);
+                        console.log(errorThrown);
+
+                        console.log(xhr.responseText);
+                        console.log(xhr.status);
+                        if (xhr.status == 401) {
+                            $('#msg').html('Yo! Unauthorised Lah!!'); // Message shown in the front end
+                        }
+                    }
+                });
+            });
+
+            $("#Logout").click(function () {
+                window.localStorage.clear();
+                window.location.assign("http://localhost:3001/login.html");
+            });
+        });  
+    </script>
+
+</head>
+
+<body>
+    <section id="headBackground" class="">
+        <p class="h1 text-center" id="sp"><b>Singapore Polytechnic</b></p>
+    </section>
+
+    <div class="navbar">
+        <a href="home.html" class="table-bordered navigator"><b>Home</b></a>
+        <a href="viewGames.html" class="table-bordered navigator"><b>Games</b></a>
+        <a href="about.html" class="table-bordered navigator"><b>About</b></a>
+        <a href="profile.html" class="table-bordered navigator"><b>Profile</b></a>
+        <a href="login.html" class="table-bordered navigator"><b>Log In</b></a>
+
+    </div>
+
+    <div id="add">
+        <a href="addGame.html" id="addGameLink">Add Game (Admin Only)</a>
+        <a href="addCategory.html" id="addCategoryLink">Add Category (Admin Only)</a>
+    </div>
+
+    <div>
+        <img src="./Images/beautifulBackground.jpg"></img>
+        <!-- <img src="http://localhost:3001/image/pic.jpg" id="profilepic" alt="Profile" style="width:100%"> -->
+        <p class="username"> <label>Username: </label>
+            <input type="text" id="username"> </br>
+        </p>
+        <p class="role"><label>Job role: </label>
+            <input type="text" id="type"> </br>
+        </p>
+        <p class="email"><label>Email: </label>
+            <input type="text" id="email">
+        </p>
+        <p><span id="msg"></span></p>
+        <div id="icons">
+            <a href="#"><i class="fa fa-dribbble"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+        </div>
+
+        <p><input type="button" id="Update" value="Update Profile" /></p>
+        <p><input type="button" id="Logout" value="Log Out" /></p>
+    </div>
+
+    <script>
+        // data extractions
+        var userData = localStorage.getItem('userInfo');
+        var userJsonData = JSON.parse(userData);
+        var username = userJsonData[0].username;
+        var useremail = userJsonData[0].email;
+        var userType = userJsonData[0].type;
+        var userpic = userJsonData[0].pic;
+
+        // updating UI
+        document.getElementById("username").value = username;
+        document.getElementById("email").value = useremail;
+        document.getElementById("type").value = userType;
+        // document.getElementById("profilepic").src = "http://localhost:3001/image/" + userpic;
+    </script>
+
+</body>
+<footer>
+
+    Copyright &#9400; 2020, All rights reserved.
+    SP_Games
+</footer>
+
+</html>
